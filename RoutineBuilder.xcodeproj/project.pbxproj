@@ -21,6 +21,7 @@
 		A012 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F012 /* OnboardingView.swift */; };
 		A013 /* ResumePromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F013 /* ResumePromptView.swift */; };
 		A014 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F014 /* SettingsView.swift */; };
+		CD23C5052F9EDA7400012586 /* RoutineExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23C5042F9EDA7400012586 /* RoutineExporter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CD23C5042F9EDA7400012586 /* RoutineExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineExporter.swift; sourceTree = "<group>"; };
 		CD24E1392F5F6AA500C9E43E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		CD24E13B2F5F6AA500C9E43E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		CD24E14F2F5F6CB300C9E43E /* RoutineBuilder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RoutineBuilder.entitlements; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			children = (
 				F004 /* RoutineManager.swift */,
 				F005 /* AlarmManager.swift */,
+				CD23C5042F9EDA7400012586 /* RoutineExporter.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				A007 /* RoutineEditorView.swift in Sources */,
 				A008 /* CardEditorView.swift in Sources */,
 				A009 /* SoundPickerView.swift in Sources */,
+				CD23C5052F9EDA7400012586 /* RoutineExporter.swift in Sources */,
 				A010 /* RoutineRunnerView.swift in Sources */,
 				A011 /* ActiveRoutineTabView.swift in Sources */,
 				A012 /* OnboardingView.swift in Sources */,
