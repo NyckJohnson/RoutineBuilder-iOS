@@ -26,7 +26,6 @@ Built with SwiftUI and SwiftData for iOS 26+.
 
 - iOS 26.1+
 - Xcode 26+
-- Apple Developer account (paid, for AlarmKit entitlement)
 
 ---
 
@@ -56,9 +55,7 @@ Built with SwiftUI and SwiftData for iOS 26+.
 |---|---|
 | UI | SwiftUI |
 | Data | SwiftData |
-| Alarms | AlarmKit + AVAudioPlayer |
 | Notifications | UserNotifications |
-| Live Activities | ActivityKit (Widget Extension) |
 
 ### Project Structure
 
@@ -79,9 +76,7 @@ RoutineBuilder/
 
 ## Known Limitations
 
-- AlarmKit requires a **paid Apple Developer account** — without it, alarms won't fire when the app is backgrounded. The app falls back to foreground-only sound playback.
-- Custom alarm sounds only play reliably when the app is foregrounded (AVAudioPlayer limitation)
-- AlarmKit and the widget extension are scaffolded but require manual Xcode setup — see [`SETUP.md`](SETUP.md)
+- Background alarms are not yet implemented — the app works as a foreground timer only
 
 ---
 
