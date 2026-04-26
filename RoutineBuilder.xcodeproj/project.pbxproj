@@ -1,0 +1,457 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 70;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A001 /* RoutineBuilderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F001 /* RoutineBuilderApp.swift */; };
+		A002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F002 /* ContentView.swift */; };
+		A003 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F003 /* Models.swift */; };
+		A004 /* RoutineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004 /* RoutineManager.swift */; };
+		A005 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005 /* AlarmManager.swift */; };
+		A006 /* RoutineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F006 /* RoutineListView.swift */; };
+		A007 /* RoutineEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007 /* RoutineEditorView.swift */; };
+		A008 /* CardEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008 /* CardEditorView.swift */; };
+		A009 /* SoundPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F009 /* SoundPickerView.swift */; };
+		A010 /* RoutineRunnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F010 /* RoutineRunnerView.swift */; };
+		A011 /* ActiveRoutineTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F011 /* ActiveRoutineTabView.swift */; };
+		A012 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F012 /* OnboardingView.swift */; };
+		A013 /* ResumePromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F013 /* ResumePromptView.swift */; };
+		A014 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F014 /* SettingsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CD24E14A2F5F6AA600C9E43E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CD24E1392F5F6AA500C9E43E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		CD24E13B2F5F6AA500C9E43E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		CD24E14F2F5F6CB300C9E43E /* RoutineBuilder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RoutineBuilder.entitlements; sourceTree = "<group>"; };
+		CD24E1502F5F6CE700C9E43E /* RoutineBuilderWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RoutineBuilderWidgetExtension.entitlements; sourceTree = "<group>"; };
+		CD24E1522F5F6DD500C9E43E /* AlarmKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlarmKit.framework; path = System/Library/Frameworks/AlarmKit.framework; sourceTree = SDKROOT; };
+		F001 /* RoutineBuilderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineBuilderApp.swift; sourceTree = "<group>"; };
+		F002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F003 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		F004 /* RoutineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineManager.swift; sourceTree = "<group>"; };
+		F005 /* AlarmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
+		F006 /* RoutineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListView.swift; sourceTree = "<group>"; };
+		F007 /* RoutineEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditorView.swift; sourceTree = "<group>"; };
+		F008 /* CardEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditorView.swift; sourceTree = "<group>"; };
+		F009 /* SoundPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPickerView.swift; sourceTree = "<group>"; };
+		F010 /* RoutineRunnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRunnerView.swift; sourceTree = "<group>"; };
+		F011 /* ActiveRoutineTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveRoutineTabView.swift; sourceTree = "<group>"; };
+		F012 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		F013 /* ResumePromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumePromptView.swift; sourceTree = "<group>"; };
+		F014 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		FAPP /* RoutineBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoutineBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CD24E13D2F5F6AA500C9E43E /* RoutineBuilderWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = RoutineBuilderWidget; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CD24E1512F5F6DC600C9E43E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CD24E1382F5F6AA500C9E43E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CD24E1522F5F6DD500C9E43E /* AlarmKit.framework */,
+				CD24E1392F5F6AA500C9E43E /* WidgetKit.framework */,
+				CD24E13B2F5F6AA500C9E43E /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		GAPP /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F001 /* RoutineBuilderApp.swift */,
+				F002 /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		GCARDS /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				F008 /* CardEditorView.swift */,
+				F009 /* SoundPickerView.swift */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
+		GMAIN /* RoutineBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				CD24E14F2F5F6CB300C9E43E /* RoutineBuilder.entitlements */,
+				GAPP /* App */,
+				GMODELS /* Models */,
+				GMANAGERS /* Managers */,
+				GVIEWS /* Views */,
+			);
+			path = RoutineBuilder;
+			sourceTree = "<group>";
+		};
+		GMANAGERS /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F004 /* RoutineManager.swift */,
+				F005 /* AlarmManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		GMODELS /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F003 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		GONBOARDING /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F012 /* OnboardingView.swift */,
+				F013 /* ResumePromptView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		GPROD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAPP /* RoutineBuilder.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		GROOT = {
+			isa = PBXGroup;
+			children = (
+				CD24E1502F5F6CE700C9E43E /* RoutineBuilderWidgetExtension.entitlements */,
+				GMAIN /* RoutineBuilder */,
+				CD24E13D2F5F6AA500C9E43E /* RoutineBuilderWidget */,
+				CD24E1382F5F6AA500C9E43E /* Frameworks */,
+				GPROD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		GROUTINES /* Routines */ = {
+			isa = PBXGroup;
+			children = (
+				F006 /* RoutineListView.swift */,
+				F007 /* RoutineEditorView.swift */,
+			);
+			path = Routines;
+			sourceTree = "<group>";
+		};
+		GRUNNER /* Runner */ = {
+			isa = PBXGroup;
+			children = (
+				F010 /* RoutineRunnerView.swift */,
+				F011 /* ActiveRoutineTabView.swift */,
+			);
+			path = Runner;
+			sourceTree = "<group>";
+		};
+		GSETTINGS /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F014 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		GVIEWS /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				GONBOARDING /* Onboarding */,
+				GROUTINES /* Routines */,
+				GCARDS /* Cards */,
+				GRUNNER /* Runner */,
+				GSETTINGS /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		TTARGET /* RoutineBuilder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCLIST /* Build configuration list for PBXNativeTarget "RoutineBuilder" */;
+			buildPhases = (
+				BPSOURCES /* Sources */,
+				CD24E14A2F5F6AA600C9E43E /* Embed Foundation Extensions */,
+				CD24E1512F5F6DC600C9E43E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RoutineBuilder;
+			productName = RoutineBuilder;
+			productReference = FAPP /* RoutineBuilder.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		PPROJ /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2630;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					TTARGET = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = BCLISTPROJ /* Build configuration list for PBXProject "RoutineBuilder" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = GROOT;
+			productRefGroup = GPROD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				TTARGET /* RoutineBuilder */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BPSOURCES /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A001 /* RoutineBuilderApp.swift in Sources */,
+				A002 /* ContentView.swift in Sources */,
+				A003 /* Models.swift in Sources */,
+				A004 /* RoutineManager.swift in Sources */,
+				A005 /* AlarmManager.swift in Sources */,
+				A006 /* RoutineListView.swift in Sources */,
+				A007 /* RoutineEditorView.swift in Sources */,
+				A008 /* CardEditorView.swift in Sources */,
+				A009 /* SoundPickerView.swift in Sources */,
+				A010 /* RoutineRunnerView.swift in Sources */,
+				A011 /* ActiveRoutineTabView.swift in Sources */,
+				A012 /* OnboardingView.swift in Sources */,
+				A013 /* ResumePromptView.swift in Sources */,
+				A014 /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BC001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BC002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		BC003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RoutineBuilder/RoutineBuilder.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = JGRLGUY77Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSAlarmKitUsageDescription = "Routine Builder uses alarms to alert you when each step ends.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nej.RoutineBuilder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		BC004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RoutineBuilder/RoutineBuilder.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = JGRLGUY77Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSAlarmKitUsageDescription = "Routine Builder uses alarms to alert you when each step ends.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nej.RoutineBuilder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BCLIST /* Build configuration list for PBXNativeTarget "RoutineBuilder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC003 /* Debug */,
+				BC004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCLISTPROJ /* Build configuration list for PBXProject "RoutineBuilder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC001 /* Debug */,
+				BC002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = PPROJ /* Project object */;
+}
