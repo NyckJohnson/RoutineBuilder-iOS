@@ -22,6 +22,7 @@
 		A013 /* ResumePromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F013 /* ResumePromptView.swift */; };
 		A014 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F014 /* SettingsView.swift */; };
 		CD23C5052F9EDA7400012586 /* RoutineExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23C5042F9EDA7400012586 /* RoutineExporter.swift */; };
+		CD23C5082F9EE0EB00012586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD23C5062F9EDF9900012586 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		CD23C5042F9EDA7400012586 /* RoutineExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineExporter.swift; sourceTree = "<group>"; };
+		CD23C5062F9EDF9900012586 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD24E1392F5F6AA500C9E43E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		CD24E13B2F5F6AA500C9E43E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		CD24E14F2F5F6CB300C9E43E /* RoutineBuilder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RoutineBuilder.entitlements; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				GMODELS /* Models */,
 				GMANAGERS /* Managers */,
 				GVIEWS /* Views */,
+				CD23C5062F9EDF9900012586 /* Assets.xcassets */,
 			);
 			path = RoutineBuilder;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			buildConfigurationList = BCLIST /* Build configuration list for PBXNativeTarget "RoutineBuilder" */;
 			buildPhases = (
 				BPSOURCES /* Sources */,
+				CD23C5072F9EE0DC00012586 /* Resources */,
 				CD24E14A2F5F6AA600C9E43E /* Embed Foundation Extensions */,
 				CD24E1512F5F6DC600C9E43E /* Frameworks */,
 			);
@@ -252,6 +256,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CD23C5072F9EE0DC00012586 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD23C5082F9EE0EB00012586 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BPSOURCES /* Sources */ = {
@@ -377,6 +392,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = RoutineBuilder/RoutineBuilder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -408,6 +424,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = RoutineBuilder/RoutineBuilder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
