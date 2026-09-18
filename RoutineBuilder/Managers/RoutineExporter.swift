@@ -17,6 +17,8 @@ struct RoutineData: Codable {
     var scheduledTime: Date?
     var isScheduled: Bool
     var orderIndex: Int
+    var scheduledAlarmSnoozeMinutes: Int = 9
+    var scheduledAlarmSoundName: String?
     var cards: [CardData]
 }
 
@@ -103,6 +105,8 @@ final class RoutineExporter {
             scheduledTime: routine.scheduledTime,
             isScheduled: routine.isScheduled,
             orderIndex: routine.orderIndex,
+            scheduledAlarmSnoozeMinutes: routine.scheduledAlarmSnoozeMinutes,
+            scheduledAlarmSoundName: routine.scheduledAlarmSoundName,
             cards: routine.sortedCards.map { cardData(from: $0) }
         )
     }
@@ -130,6 +134,8 @@ final class RoutineExporter {
         routine.scheduledTime = data.scheduledTime
         routine.isScheduled = data.isScheduled
         routine.orderIndex = data.orderIndex
+        routine.scheduledAlarmSnoozeMinutes = data.scheduledAlarmSnoozeMinutes
+        routine.scheduledAlarmSoundName = data.scheduledAlarmSoundName
         routine.cards = data.cards.map { card(from: $0, routine: routine) }
         return routine
     }

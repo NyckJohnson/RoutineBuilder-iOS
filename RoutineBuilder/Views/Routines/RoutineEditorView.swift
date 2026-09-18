@@ -12,8 +12,9 @@ struct RoutineEditorView: View {
     @Binding var selectedTab: ContentView.Tab
 
     @State private var editingCard: Card?
-    @State private var showingDeleteConfirm = false
-    @State private var timeConflictWarning = false
+    @State private var showingDeleteConfirm      = false
+    @State private var timeConflictWarning       = false
+    @State private var showingRoutineSoundPicker = false
 
     var body: some View {
         NavigationStack {
@@ -33,6 +34,16 @@ struct RoutineEditorView: View {
             }
             .sheet(item: $editingCard) { card in
                 CardEditorView(card: card, routine: routine)
+            }
+            .sheet(isPresented: $showingRoutineSoundPicker) {
+                SoundPickerView(selectedSoundName: Binding(
+                    get: { routine.scheduledAlarmSoundName },
+                    set: {
+                        routine.scheduledAlarmSoundName = $0
+                        routineManager.save()
+                        Task { await alarmManager.scheduleRoutineAlarm(for: routine) }
+                    }
+                ))
             }
             .confirmationDialog(
                 "Delete \"\(routine.name)\"?",
@@ -62,10 +73,18 @@ struct RoutineEditorView: View {
         Section("Schedule") {
             Toggle("Schedule this routine", isOn: Binding(
                 get: { routine.isScheduled },
-                set: {
-                    routine.isScheduled = $0
+                set: { newValue in
+                    routine.isScheduled = newValue
                     routineManager.updateSchedule(for: routine)
                     routineManager.save()
+                    Task {
+                        if newValue {
+                            guard await alarmManager.requestAuthorization() else { return }
+                            await alarmManager.scheduleRoutineAlarm(for: routine)
+                        } else {
+                            await alarmManager.cancelRoutineAlarm(for: routine)
+                        }
+                    }
                 }
             ))
 
@@ -81,12 +100,42 @@ struct RoutineEditorView: View {
                                 routine.scheduledTime = newTime
                                 routineManager.updateSchedule(for: routine)
                                 routineManager.save()
+                                Task { await alarmManager.scheduleRoutineAlarm(for: routine) }
                             }
                         }
                     ),
                     displayedComponents: [.hourAndMinute]
                 )
                 .datePickerStyle(.compact)
+
+                Stepper(
+                    "Snooze: \(routine.scheduledAlarmSnoozeMinutes) min",
+                    value: Binding(
+                        get: { routine.scheduledAlarmSnoozeMinutes },
+                        set: {
+                            routine.scheduledAlarmSnoozeMinutes = max(1, $0)
+                            routineManager.save()
+                            Task { await alarmManager.scheduleRoutineAlarm(for: routine) }
+                        }
+                    ),
+                    in: 1...30,
+                    step: 1
+                )
+
+                Button {
+                    showingRoutineSoundPicker = true
+                } label: {
+                    HStack {
+                        Text("Alarm Sound")
+                            .foregroundStyle(.primary)
+                        Spacer()
+                        Text(routine.scheduledAlarmSoundName ?? "Default")
+                            .foregroundStyle(.secondary)
+                        Image(systemName: "chevron.right")
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(.tertiary)
+                    }
+                }
 
                 if timeConflictWarning {
                     Label("Another routine is scheduled at this time.", systemImage: "exclamationmark.triangle.fill")

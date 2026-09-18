@@ -2,7 +2,7 @@
 
 ## Opening the Project
 
-1. Unzip and open `RoutineBuilder.xcodeproj` in Xcode 16+
+1. Unzip and open `RoutineBuilder.xcodeproj` in Xcode 26+ (AlarmKit requires iOS 26)
 2. Select your team under **Signing & Capabilities** for the `RoutineBuilder` target
 3. Change the bundle ID from `com.yourteam.RoutineBuilder` to your own
 
@@ -15,13 +15,27 @@ Without it, countdown alarms will be silently dismissed by the system.
 
 ### Steps:
 
-1. **Add the extension target:**
+**Current state:** the extension target and `RoutineLiveActivity` struct already
+exist in the project and match the shape below — steps 1–3 are done. Steps 4–6
+(the Alarms capability, AlarmKit linking, and swapping out the `AlarmManager`
+stub) are still outstanding.
+
+1. **Add the extension target:** ✅ done
    `File > New > Target > Widget Extension`
    - Name: `RoutineBuilderWidgetExtension`
    - Uncheck "Include Configuration App Intent"
    - Check "Include Live Activity"
 
-2. **Create the Live Activity in the extension target:**
+   Note: this template also generates a placeholder `RoutineBuilderWidget.swift`
+   (the default "My Widget" emoji example). It's currently still the
+   unmodified Xcode boilerplate — delete it or repurpose it before shipping,
+   and remove its entry from `RoutineBuilderWidgetBundle.swift` if deleted.
+
+2. **Create the Live Activity in the extension target:** ✅ done — see
+   `RoutineBuilderWidgetLiveActivity.swift`. Note this defines the *shape*
+   of the Live Activity only; nothing yet calls
+   `Activity<RoutineAttributes>.request(...)` to actually start or update
+   one. That wiring depends on the real `AlarmManager` implementation (step 6).
    Implement `ActivityAttributes` using the shape from `Models.swift`:
    ```swift
    import ActivityKit
@@ -68,7 +82,7 @@ Without it, countdown alarms will be silently dismissed by the system.
    }
    ```
 
-3. **Add App Group** (to share data between app and extension):
+3. **Add App Group** (to share data between app and extension) — outstanding:
    - Main target: `Signing & Capabilities > + Capability > App Groups`
      Add: `group.com.yourteam.RoutineBuilder`
    - Widget extension target: same capability, same group ID
@@ -79,8 +93,14 @@ Without it, countdown alarms will be silently dismissed by the system.
 5. **Link AlarmKit** in the main app target:
    `Build Phases > Link Binary With Libraries > + > AlarmKit.framework`
 
-6. **Remove the stub** in `AlarmManager.swift` once AlarmKit is linked —
-   the `#if canImport(AlarmKit)` block will automatically use the real implementation.
+6. **Swap in the real implementation** in `AlarmManager.swift`. The active
+   code today is a plain 4-method stub class at the top of the file, with the
+   real AlarmKit implementation (and its own fallback stub) commented out
+   below it. Once AlarmKit is linked:
+   - Delete the active stub class at the top of the file
+   - Uncomment the `#if canImport(AlarmKit) ... #else ... #endif` block
+   - The `#if` branch will compile once AlarmKit is linked; the `#else`
+     branch in that block can then be deleted too
 
 ---
 
@@ -102,7 +122,9 @@ RoutineBuilder/
 │   └── Models.swift              — SwiftData models + migration plan
 ├── Managers/
 │   ├── RoutineManager.swift      — All CRUD, queue, state persistence, notifications
-│   └── AlarmManager.swift        — AlarmKit wrapper (with stub fallback)
+│   ├── AlarmManager.swift        — AlarmKit wrapper (with stub fallback)
+│   ├── RoutineExporter.swift     — JSON import/export of routines
+│   └── AudioUtils.swift          — Shared alarm sound resolution helpers
 └── Views/
     ├── Onboarding/
     │   ├── OnboardingView.swift   — 3-page onboarding

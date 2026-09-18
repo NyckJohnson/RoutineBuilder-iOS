@@ -23,6 +23,7 @@
 		A014 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F014 /* SettingsView.swift */; };
 		CD23C5052F9EDA7400012586 /* RoutineExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23C5042F9EDA7400012586 /* RoutineExporter.swift */; };
 		CD23C5082F9EE0EB00012586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD23C5062F9EDF9900012586 /* Assets.xcassets */; };
+		CD8245932FA00E1D00D00AB5 /* AudioUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8245922FA00E1D00D00AB5 /* AudioUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +47,7 @@
 		CD24E14F2F5F6CB300C9E43E /* RoutineBuilder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RoutineBuilder.entitlements; sourceTree = "<group>"; };
 		CD24E1502F5F6CE700C9E43E /* RoutineBuilderWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RoutineBuilderWidgetExtension.entitlements; sourceTree = "<group>"; };
 		CD24E1522F5F6DD500C9E43E /* AlarmKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlarmKit.framework; path = System/Library/Frameworks/AlarmKit.framework; sourceTree = SDKROOT; };
+		CD8245922FA00E1D00D00AB5 /* AudioUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUtils.swift; sourceTree = "<group>"; };
 		F001 /* RoutineBuilderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineBuilderApp.swift; sourceTree = "<group>"; };
 		F002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F003 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CD24E13D2F5F6AA500C9E43E /* RoutineBuilderWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = RoutineBuilderWidget; sourceTree = "<group>"; };
+		CDA868DE305C9233005F6DFD /* Intents */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Intents; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,7 @@
 				GAPP /* App */,
 				GMODELS /* Models */,
 				GMANAGERS /* Managers */,
+				CDA868DE305C9233005F6DFD /* Intents */,
 				GVIEWS /* Views */,
 				CD23C5062F9EDF9900012586 /* Assets.xcassets */,
 			);
@@ -125,6 +129,7 @@
 				F004 /* RoutineManager.swift */,
 				F005 /* AlarmManager.swift */,
 				CD23C5042F9EDA7400012586 /* RoutineExporter.swift */,
+				CD8245922FA00E1D00D00AB5 /* AudioUtils.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -219,6 +224,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				CDA868DE305C9233005F6DFD /* Intents */,
+			);
 			name = RoutineBuilder;
 			productName = RoutineBuilder;
 			productReference = FAPP /* RoutineBuilder.app */;
@@ -287,6 +295,7 @@
 				A011 /* ActiveRoutineTabView.swift in Sources */,
 				A012 /* OnboardingView.swift in Sources */,
 				A013 /* ResumePromptView.swift in Sources */,
+				CD8245932FA00E1D00D00AB5 /* AudioUtils.swift in Sources */,
 				A014 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

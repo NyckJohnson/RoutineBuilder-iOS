@@ -108,4 +108,6 @@ final class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate, Se
 
 extension Notification.Name {
     static let routineHeadsUpTapped = Notification.Name("routineHeadsUpTapped")
+    static let cardAlarmDoneTapped = Notification.Name("cardAlarmDoneTapped")
+    static let routineAlarmSnoozeTapped = Notification.Name("routineAlarmSnoozeTapped")
 }

@@ -13,8 +13,10 @@ final class RoutineRunner: ObservableObject {
     @Published var isAcknowledged: Bool = false
     @Published var timerFired: Bool = false
     @Published var hasStarted: Bool = false
+    @Published var preStartSecondsRemaining: Int = 60
 
     private var timer: AnyCancellable?
+    private var alarmDoneSubscription: AnyCancellable?
     private var cardStartedAt: Date = Date()
 
     let routine: Routine
@@ -40,6 +42,7 @@ final class RoutineRunner: ObservableObject {
         }
 
         startTimer()
+        observeAlarmDoneTaps()
     }
 
     var currentCard: Card? {
@@ -57,6 +60,9 @@ final class RoutineRunner: ObservableObject {
     // MARK: - Actions
 
     func acknowledge() {
+        stopAlarmSound()
+        preStartSecondsRemaining = 60
+        
         hasStarted = true
         isAcknowledged = true
         saveState()
@@ -66,7 +72,6 @@ final class RoutineRunner: ObservableObject {
         stopAlarmSound()
         guard let card = currentCard else { return }
         secondsRemaining = card.snoozeMinutes * 60
-        isAcknowledged = false
         timerFired = false
         saveState()
     }
@@ -79,7 +84,7 @@ final class RoutineRunner: ObservableObject {
 
         let alarmManager = alarmManager
         let card = currentCard!
-        Task { await alarmManager.cancelCardAlarm(for: card) }
+        Task { @MainActor in await alarmManager.cancelCardAlarm(for: card) }
 
         if isLastCard {
             routineManager.routineDidFinish()
@@ -93,7 +98,7 @@ final class RoutineRunner: ObservableObject {
         if let card = currentCard {
             let alarmManager = alarmManager
             let routine = routine
-            Task { await alarmManager.cancelAllAlarms(for: routine) }
+            Task { @MainActor in await alarmManager.cancelAllAlarms(for: routine) }
             _ = card // suppress warning
         }
         routineManager.cancelRoutine(routine)
@@ -109,8 +114,32 @@ final class RoutineRunner: ObservableObject {
             }
     }
 
+    private func observeAlarmDoneTaps() {
+        alarmDoneSubscription = NotificationCenter.default.publisher(for: .cardAlarmDoneTapped)
+            .sink { [weak self] notification in
+                guard let self,
+                      let routineID = notification.userInfo?["routineID"] as? UUID,
+                      let cardID = notification.userInfo?["cardID"] as? UUID,
+                      routineID == self.routine.id,
+                      cardID == self.currentCard?.id,
+                      self.canCompleteCard else { return }
+                self.completeCard()
+            }
+    }
+
     private func tick() {
-        guard hasStarted else { return }
+        guard hasStarted else {
+            // Pre-start countdown
+            if preStartSecondsRemaining > 0 {
+                preStartSecondsRemaining -= 1
+            } else {
+                // Time to nag — play alarm if not already playing
+                if audioPlayer == nil {
+                    playAlarmSound()
+                }
+            }
+            return
+        }
         guard secondsRemaining > 0 else {
             if !timerFired {
                 timerFired = true
@@ -130,12 +159,13 @@ final class RoutineRunner: ObservableObject {
         isAcknowledged = false
         timerFired = false
         cardStartedAt = Date()
+        preStartSecondsRemaining = 60
 
         if let card = currentCard, card.hasDuration {
             secondsRemaining = card.durationMinutes * 60
             let alarmManager = alarmManager
             let card = card
-            Task { await alarmManager.scheduleCardAlarm(for: card) }
+            Task { @MainActor in await alarmManager.scheduleCardAlarm(for: card) }
         } else {
             secondsRemaining = 0
         }
@@ -153,17 +183,21 @@ final class RoutineRunner: ObservableObject {
     }
     
     private func playAlarmSound() {
+        let files = (try? FileManager.default.contentsOfDirectory(atPath: "/System/Library/Audio/UISounds/New")) ?? []
+        print("[Sound] Available files: \(files.sorted())")
+        
         let soundName = currentCard?.alarmSoundName ?? "default"
+        print("[Sound] Playing sound for: \(soundName)")
         
         let url: URL?
         if soundName == "none" {
             return
         } else if soundName == "default" || soundName.hasPrefix("alarm:") {
-            let name = soundName == "default" ? "Radar" : String(soundName.dropFirst("alarm:".count))
-            url = resolvedURL(for: name, in: "/System/Library/Audio/UISounds/New")
+            let name = soundName == "default" ? AudioUtils.defaultAlarmSoundName : String(soundName.dropFirst("alarm:".count))
+            url = AudioUtils.resolvedURL(for: name, in: "/System/Library/Audio/UISounds/New")
         } else if soundName.hasPrefix("ringtone:") {
             let name = String(soundName.dropFirst("ringtone:".count))
-            url = resolvedURL(for: name, in: "/Library/Ringtones")
+            url = AudioUtils.resolvedURL(for: name, in: "/Library/Ringtones")
         } else if soundName.hasPrefix("custom:") {
             let name = String(soundName.dropFirst("custom:".count))
             let customDir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
@@ -173,20 +207,17 @@ final class RoutineRunner: ObservableObject {
             url = nil
         }
         
-        guard let url else { return }
+        guard let url else {
+            print("[Sound] No URL resolved")
+            return
+        }
+        print("[Sound] Playing: \(url.path), exists: \(FileManager.default.fileExists(atPath: url.path))")
+        
         try? AVAudioSession.sharedInstance().setCategory(.playback)
         try? AVAudioSession.sharedInstance().setActive(true)
         audioPlayer = try? AVAudioPlayer(contentsOf: url)
         audioPlayer?.numberOfLoops = -1  // loop until stopped
         audioPlayer?.play()
-    }
-
-    private func resolvedURL(for name: String, in dir: String) -> URL? {
-        for ext in ["caf", "m4r", "mp3", "aiff"] {
-            let url = URL(fileURLWithPath: "\(dir)/\(name).\(ext)")
-            if FileManager.default.fileExists(atPath: url.path) { return url }
-        }
-        return nil
     }
 
     func stopAlarmSound() {
@@ -260,14 +291,6 @@ struct RoutineRunnerView: View {
                     .foregroundStyle(.secondary)
             }
             Spacer()
-            Button {
-                runner.stop()
-                dismiss()
-            } label: {
-                Image(systemName: "xmark.circle.fill")
-                    .font(.title2)
-                    .foregroundStyle(.secondary)
-            }
         }
     }
 
@@ -355,38 +378,41 @@ struct RoutineRunnerView: View {
 
     private func actionButtons(_ card: Card) -> some View {
         VStack(spacing: 12) {
-            if !runner.isAcknowledged && card.hasDuration {
+            if !runner.hasStarted {
+                // Pre-start state — only show I'm Starting
                 Button {
                     runner.acknowledge()
                 } label: {
                     Label("I'm Starting", systemImage: "checkmark")
                         .frame(maxWidth: .infinity)
+                        .font(.body.weight(.semibold))
                 }
-                .buttonStyle(.bordered)
+                .buttonStyle(.borderedProminent)
                 .controlSize(.large)
-            }
+            } else {
+                // Active state — show snooze (if timer fired) and done
+                if runner.timerFired {
+                    Button {
+                        runner.snooze()
+                    } label: {
+                        Label("Snooze \(card.snoozeMinutes) min", systemImage: "zzz")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.large)
+                }
 
-            if runner.timerFired {
                 Button {
-                    runner.snooze()
+                    runner.completeCard()
                 } label: {
-                    Label("Snooze \(card.snoozeMinutes) min", systemImage: "zzz")
+                    Label(runner.isLastCard ? "Finish Routine" : "Done with Step", systemImage: "checkmark.circle.fill")
                         .frame(maxWidth: .infinity)
+                        .font(.body.weight(.semibold))
                 }
-                .buttonStyle(.bordered)
+                .buttonStyle(.borderedProminent)
                 .controlSize(.large)
+                .disabled(!runner.canCompleteCard)
             }
-
-            Button {
-                runner.completeCard()
-            } label: {
-                Label(runner.isLastCard ? "Finish Routine" : "Done with Step", systemImage: "checkmark.circle.fill")
-                    .frame(maxWidth: .infinity)
-                    .font(.body.weight(.semibold))
-            }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
-            .disabled(!runner.canCompleteCard)
         }
     }
 

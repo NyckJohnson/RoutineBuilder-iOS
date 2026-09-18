@@ -22,7 +22,9 @@ final class Routine {
     var scheduledTime: Date?
     var isScheduled: Bool
     var orderIndex: Int
-    var queuePosition: Int?         // nil = not queued, 0 = next up
+    var queuePosition: Int?                     // nil = not queued, 0 = next up
+    var scheduledAlarmSnoozeMinutes: Int = 9
+    var scheduledAlarmSoundName: String?        // same "alarm:"/"ringtone:"/"custom:"/"default"/"none" convention as Card
     @Relationship(deleteRule: .cascade, inverse: \Card.routine) var cards: [Card]
 
     init(name: String = "New Routine") {

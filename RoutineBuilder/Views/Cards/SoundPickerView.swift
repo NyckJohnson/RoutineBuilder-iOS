@@ -133,18 +133,17 @@ struct SoundPickerView: View {
 
         if name.hasPrefix("alarm:") {
             let soundName = String(name.dropFirst("alarm:".count))
-            url = resolvedURL(for: soundName, in: "/System/Library/Audio/UISounds/New")
+            url = AudioUtils.resolvedURL(for: soundName, in: "/System/Library/Audio/UISounds/New")
         } else if name.hasPrefix("ringtone:") {
             let soundName = String(name.dropFirst("ringtone:".count))
-            url = resolvedURL(for: soundName, in: "/Library/Ringtones")
+            url = AudioUtils.resolvedURL(for: soundName, in: "/Library/Ringtones")
         } else if name.hasPrefix("custom:") {
             let soundName = String(name.dropFirst("custom:".count))
             url = customSoundsDir.appendingPathComponent(soundName)
         } else if name == "none" {
             return  // silence, nothing to preview
         } else if name == "default" {
-            // Default — preview Radar as representative
-            url = resolvedURL(for: "Radar", in: "/System/Library/Audio/UISounds/New")
+            url = AudioUtils.resolvedURL(for: AudioUtils.defaultAlarmSoundName, in: "/System/Library/Audio/UISounds/New")
         } else {
             url = nil
         }
@@ -154,14 +153,6 @@ struct SoundPickerView: View {
         try? AVAudioSession.sharedInstance().setActive(true)
         audioPlayer = try? AVAudioPlayer(contentsOf: url)
         audioPlayer?.play()
-    }
-
-    private func resolvedURL(for name: String, in dir: String) -> URL? {
-        for ext in ["caf", "m4r", "mp3", "aiff"] {
-            let url = URL(fileURLWithPath: "\(dir)/\(name).\(ext)")
-            if FileManager.default.fileExists(atPath: url.path) { return url }
-        }
-        return nil
     }
 
     private func stopCurrentSound() {

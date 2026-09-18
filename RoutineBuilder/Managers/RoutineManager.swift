@@ -101,8 +101,6 @@ final class RoutineManager: ObservableObject {
 
     func updateSchedule(for routine: Routine) {
         cancelNotification(for: routine)
-        guard routine.isScheduled, routine.scheduledTime != nil else { return }
-        scheduleHeadsUpNotification(for: routine)
     }
 
     // MARK: - Routine Queue
@@ -187,7 +185,7 @@ final class RoutineManager: ObservableObject {
         if !granted { permissionsDenied.insert(.notifications) }
     }
 
-    private func scheduleHeadsUpNotification(for routine: Routine) {
+    private func scheduleHeadsUpNotification(for routine: Routine) {    // This may be dead code
         guard let time = routine.scheduledTime else { return }
 
         let content = UNMutableNotificationContent()

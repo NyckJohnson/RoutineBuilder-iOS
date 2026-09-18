@@ -14,6 +14,7 @@ Built with SwiftUI and SwiftData for iOS 26+.
 - **Routine queue** — start a second routine while one is running and it will wait its turn
 - **Custom alarm sounds** — choose from built-in alarm sounds, ringtones, or import your own
 - **Crash recovery** — if the app is force-quit mid-routine, it offers to resume where you left off
+- **Import & export** your routines as JSON files, for backup or sharing
 - **Onboarding flow** with staged permission requests
 
 ## Screenshots
@@ -63,7 +64,7 @@ Built with SwiftUI and SwiftData for iOS 26+.
 RoutineBuilder/
 ├── App/                    — Entry point, tab bar shell
 ├── Models/                 — SwiftData models + migration plan
-├── Managers/               — RoutineManager, AlarmManager
+├── Managers/               — RoutineManager, AlarmManager, RoutineExporter, AudioUtils
 └── Views/
     ├── Onboarding/         — First launch flow, resume prompt
     ├── Routines/           — Routine list and editor
@@ -76,7 +77,9 @@ RoutineBuilder/
 
 ## Known Limitations
 
-- Background alarms are not yet implemented — the app works as a foreground timer only
+- Background alarms are not yet implemented — the app works as a foreground timer only (AlarmKit integration is stubbed; see [`SETUP.md`](SETUP.md))
+- Onboarding currently only requests notification permission; the AlarmKit permission request on first routine start (planned) is not yet wired up
+- Custom alarm sounds only play while the app is in the foreground
 
 ---
 
@@ -97,7 +100,7 @@ Please follow the existing code style and keep changes focused — one feature o
 ## Roadmap
 
 - [ ] AlarmKit full integration (paid developer account required)
-- [ ] Widget extension + Live Activity for Lock Screen countdown
+- [x] Widget extension target + Live Activity struct scaffolded — not yet wired to alarm/countdown state, and still contains an unmodified placeholder widget to clean up
 - [ ] Apple Watch support
 - [ ] iPad layout (NavigationSplitView)
 - [ ] Accessibility / VoiceOver pass
